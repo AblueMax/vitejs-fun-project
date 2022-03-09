@@ -7,7 +7,9 @@ export default {
   data() {
     return {
       isPlaying: false,
+      showResult: false,
       delay: null,
+      score: null,
     };
   },
   methods: {
@@ -15,6 +17,12 @@ export default {
       this.delay = 10 + Math.random() * 2500;
       this.isPlaying = true;
       console.log(this.delay);
+      this.showResult = false;
+    },
+    endGame(reactionTime) {
+      this.score = reactionTime;
+      this.isPlaying = false;
+      this.showResult = true;
     },
   },
 };
@@ -24,7 +32,8 @@ export default {
   <img alt="Vue logo" src="./assets/logo.png" />
   <h1>Andy Lovely Timer</h1>
   <button @click="start" :disabled="isPlaying">play</button>
-  <Block v-if="isPlaying" :delay="delay" />
+  <Block v-if="isPlaying" :delay="delay" @end="endGame" />
+  <p v-if="showResult">Reaction Time = {{ score }} ms</p>
 </template>
 
 <style>
