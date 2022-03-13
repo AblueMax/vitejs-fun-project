@@ -1,5 +1,6 @@
 <script setup>
 import Block from './components/Block.vue';
+import Result from './components/Result.vue';
 </script>
 
 <script>
@@ -33,7 +34,7 @@ export default {
   <h1>Andy Lovely Timer</h1>
   <button @click="start" :disabled="isPlaying">play</button>
   <Block v-if="isPlaying" :delay="delay" @end="endGame" />
-  <p v-if="showResult">Reaction Time = {{ score }} ms</p>
+  <Result v-if="showResult" :score="score" />
 </template>
 
 <style>
